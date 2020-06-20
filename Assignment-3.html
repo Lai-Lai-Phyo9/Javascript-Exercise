@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Digital Clock</title>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC&display=swap" rel="stylesheet">
+	<style type="text/css">
+		body{
+			padding: 0;
+			margin:0;
+			display: flex;
+			justify-content: center;
+			height: 100vh;
+			align-items: center;
+			background-color:black;
+		}
+		#myclock{
+			color: #17D4FE;
+			font-size: 10em;
+			letter-spacing: 4px;
+			font-family: 'Playfair Display SC', serif;
+			opacity: .5;
+			box-shadow: 0px 10px 24px 5px #17D4FE;
+			padding: 10px 20px;
+			padding-bottom: 50px;
+			width: 1100px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="myclock" class="clock" onload="clock()"></div>
+		<script type="text/javascript">
+		function clock(){
+			let now=new Date();
+			let hour=now.getHours();
+			let min=now.getMinutes();
+			let sec=now.getSeconds();
+			var ampm = hour >= 12 ? 'pm' : 'am';
+			let time=hour+":"+min+":"+sec+" "+ampm
+			document.getElementById('myclock').innerText=time;
+			setTimeout(clock,1000);
+		}
+		clock();
+	</script>
+</body>
+</html>

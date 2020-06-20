@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+   	<title>Guess Number</title>
+	<style type="text/css">
+	body{
+		margin: 0;
+		padding: 0;
+		display: flex;
+		justify-content: center;
+		height: 100vh;
+		align-items: center;
+		background-color:#17202A;
+	}
+	.container{
+		width: 400px;
+		height: 400px;
+		background-color: white;
+		border-radius: 3px;
+		padding: 20px 10px;
+		box-shadow: 0px 5px 26px 9px black;
+	}
+	label{
+		display: block;
+		font-size: 30px;
+		margin-top: 100px;
+		text-align: center;
+		font-weight: 800;
+	}
+	#num{
+		display: block;
+		font-size: 20px;
+		line-height: 25px;
+		padding: 5px 10px;
+		margin-top: 40px;
+		text-align: center;
+		margin-left: 50px
+	}
+	button{
+		color: #17202A;
+		border: 1px solid #17202A;
+		margin-left: 50px;
+		margin-top:20px;
+		transition: .5s;
+		padding: 10px 20px;
+		border-radius: 3px;
+		text-transform: uppercase;
+		font-weight: 500;
+		letter-spacing: 3px;
+		background-color: white;
+	}
+	button:hover{
+		background-color: #17202A;
+		color: white;
+	}
+	#demo{
+		margin:20px 50px;	
+	}
+	</style>
+	<script type="text/javascript">
+	let wrongnum=[];
+	let randNum;
+	let count=0;
+	let wrongtime=0;
+	if (count==0){
+		randNum = Math.floor(Math.random() * 10);
+	}
+	function myFunction() 
+	{
+		count++;
+		let number = document.getElementById('num').value;
+		if(count%4==0)
+		{
+			randNum = Math.floor(Math.random() * 10);
+			alert("After 4 wrong times,answer will be a new number");
+		}
+		if (number<randNum)
+		{
+			alert("Input number is lower than the answer!");
+			wrongnum.push(number);
+			wrongtime++;
+		}
+		else if(number==randNum)
+		{
+			alert("Correct");
+			document.getElementById('demo').innerHTML = "Wrong Number=> "+wrongnum.join(',')+ "Wrong Times=> "+wrongtime;
+		}
+		else if(number>randNum)
+		{
+			alert("Input number is greater than the answer!");
+			wrongnum.push(number);
+			wrongtime++;
+		}
+	}
+	</script>
+</head>
+<body>
+	<div class="container">
+		<label for="num">Enter 
+		Number 1-10</label>
+		<input type="text" name="" min="1" id="num">
+		<button onclick="myFunction()">Check</button>
+		<p id="demo" style="color: red;"></p>
+	</div>
+</body>
+</html>

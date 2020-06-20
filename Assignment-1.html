@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculate Room</title>
+	<style type="text/css">
+		body{
+			padding: 0;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			height: 100vh;
+			justify-content: center;
+			background-color: black;
+		}
+		form{
+			height: 500px;
+			padding: 20px 40px;
+			background-color: white;
+			width: 600px;
+		}
+		label{
+			font-size: 20px;
+			margin-right: 20px;
+		}
+		span{
+			margin-left: 5px;
+		}
+		.form-control{
+			line-height: 30px;
+			font-size: 20px;
+			margin-bottom: 5px;
+		}
+	</style>
+	<script type="text/javascript">
+		var test = 0;
+		function check(o){
+			if (document.mainForm.btn.value== 'on') {
+				test=1;
+				// alert(test);
+				 document.getElementById("val3").disabled = false;
+				 document.getElementById("val4").disabled = true;
+				 document.getElementById("val5").disabled = true;
+			}
+			else{
+				test=0;
+				// alert(test);
+				document.getElementById("val3").disabled = true;
+				document.getElementById("val4").disabled = false;
+				document.getElementById("val5").disabled = false;
+			}
+		}
+		function calcRoom() 
+		{
+			value1=parseInt(document.mainForm.textBox1.value);//room lenght
+			value2=parseInt(document.mainForm.textBox2.value);// room width
+			if (test==1) {
+				value3=parseInt(document.mainForm.textBox3.value)//tile length&width
+				value4=(value1*value2/ value3**2)// total tiles for room
+				value5= value4*0.05// add five percent 
+				result=value4+value5
+				a=Math.round(result)
+			}
+			else{
+				value4=parseInt(document.mainForm.textBox4.value);
+				value5=parseInt(document.mainForm.textBox5.value);
+				value41=value4/12;
+				value51=value5/12;
+				// alert(value1+','+value2);
+				// alert(value41+','+value51);
+				value6 = value1/value41;
+				// alert(value6);
+				value7 =value2/value51;
+				value8 = value6*value7;
+				value9 = value8*0.05;
+				result = value8+value9;
+				a = Math.round(result);
+			}
+			document.mainForm.textBoxSum.value=a;
+		}
+	</script>
+</head>
+<body>
+	<form name="mainForm">
+		<h1>Room</h1>
+		<label for="val1">Width:</label>
+		<input type="text" name="textBox1" id="val1" class="form-control" /><span>ft</span><br/>
+		<label for="val2">Height</label>
+		<input type="text" name="textBox2" id="val2" class="form-control" /><span>ft</span><br/>
+
+		<label for="floor">Floor</label>
+		<input type="radio" name="btn" id="floor" value="on" onclick="check(this)">
+		<label for="wall">Wall</label>
+		<input type="radio" name="btn" id="wall" value="off" onclick="check(this)">
+
+		<h2>Tiles for Floor</h2>
+		<label for="val3">Width&Height</label>
+		<input type="text" name="textBox3" id="val3" class="form-control"/><span>ft</span>
+
+		<h2>Tiles for Wall</h2>
+		<label for="value4">Width:</label>
+		<input type="" name="textBox4" id="val4" class="form-control"><span>inch</span><br/>
+	    <label for="value5">Height</label>
+		<input type="" name="textBox5" id="val5"class="form-control"><span>inch</span><br/><br/>
+
+		<input type="button" value="Calculate" onclick="javascript: calcRoom()"/>	
+		<input type="text" name="textBoxSum" readonly="readonly" class="form-control">
+		<p id="demo"></p>
+	</form>
+</body>
+</html>
